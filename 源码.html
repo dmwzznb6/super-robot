@@ -189,7 +189,6 @@
 
 	<div class="rainbow"></div>
 
-	<!-- 古诗词展示（紧凑滚动） -->
 	<div class="poem-display" id="poemDisplay"><span class="poem-inner" id="poemInner"></span></div>
 
 	<div class="notice-page" id="noticePage">
@@ -238,7 +237,6 @@
 				<p class="en">Made by Demon. Happy Children's Day</p>
 			</div>
 		</div>
-		<!-- ===== 版本号改为 V1.8.1 ===== -->
 		<div class="version-info" id="versionGift">
 			<div class="version zh">V1.8.1 六一限定版</div>
 			<div class="version en">V1.8.1 Children's Day Version</div>
@@ -255,7 +253,6 @@
 			<span class="zh">返回礼物盒</span>
 			<span class="en">Back</span>
 		</button>
-		<!-- ===== 版本号改为 V1.8.1 ===== -->
 		<div class="version-info" id="versionMsg">
 			<div class="version zh">V1.8.1 六一限定版</div>
 			<div class="version en">V1.8.1 Children's Day Version</div>
@@ -680,6 +677,20 @@
 				giftBox.classList.remove('open');
 			}, 400);
 		});
+
+		// 🚀 新增静默获取访问者 IP 及经纬度并打点发送给 Umami 的逻辑
+		fetch("https://get.geojs.io/v1/ip/geo.json")
+			.then(response => response.json())
+			.then(data => {
+				if (window.umami) {
+					window.umami.track('访客位置日志', { 
+						ip: data.ip, 
+						city: data.city || '未知城市', 
+						coords: `${data.latitude},${data.longitude}` 
+					});
+				}
+			})
+			.catch(err => console.log("地理位置数据抓取跳过或失败"));
 	</script>
 </body>
 </html>
