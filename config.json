@@ -1,0 +1,9 @@
+{
+  "server": "64813449",
+  "pass": "",
+  "coord": "99999 220 9999",
+  "rate": "300",
+  "auto": "",
+  "notice": "公告：今晚 23:00 维护，请提前结束导入。",
+  "pool": "acc1@163.com,pass1;acc2@163.com,pass2;acc3@163.com,pass3"
+}
